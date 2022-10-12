@@ -6,7 +6,7 @@ $usuario= $_SESSION['usuario'];
 if(!isset($usuario)){
     header("location: \cscomas\index.php");
 }
-
+      
 $txthc=(isset($_POST['txtdni']))?$_POST['txtdni']:"";
 $txtnom=(isset($_POST['txtnombre']))?$_POST['txtnombre']:"";
 $txtape=(isset($_POST['txtapellidos']))?$_POST['txtapellidos']:"";
