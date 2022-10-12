@@ -17,6 +17,8 @@ $senten = "SELECT * FROM usuario WHERE mail_usuario = '".$usuario."'";
     $_SESSION["usuario"] =$correo;
     $_SESSION["rol"] =$rol;
     switch ($rol) {
+
+        
         case 0:
             header("Location: \cscomas\Administracion\MenuAdmin.php");
             break;
