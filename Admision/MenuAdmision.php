@@ -6,7 +6,7 @@ $usuario= $_SESSION['usuario'];
 if(!isset($usuario)){
     header("location: \cscomas\index.php");
 }
-      
+
 $txthc=(isset($_POST['txtdni']))?$_POST['txtdni']:"";
 $txtnom=(isset($_POST['txtnombre']))?$_POST['txtnombre']:"";
 $txtape=(isset($_POST['txtapellidos']))?$_POST['txtapellidos']:"";
@@ -38,7 +38,18 @@ switch($accion){
         $sentencia->bindParam(':sex_paciente',$txtsex);
         $sentencia->bindParam(':fn_paciente',$txtfn);
         $sentencia->execute();
-        
+
+        $txthc="";
+        $txtnom="";
+        $txtape="";
+        $txtmail="";
+        $txtdir="";
+        $txttel="";
+        $txtcel="";
+        $txtsex="";
+        $txtfn="";
+        echo'<script type="text/javascript"> alert("Tarea Guardada");</script>';
+
     break;
     case "btnModificar":
         $est=(int)"1";
@@ -72,7 +83,25 @@ switch($accion){
     case "btnEliminar":
         $sentencia=$pdo->prepare(" DELETE FROM paciente WHERE hc_paciente=:hc_paciente");
         $sentencia->bindParam(':hc_paciente',$txthc);
-        $sentencia->execute();
+        
+        if (!$sentencia->execute()) {
+
+            echo       
+              '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=http://localhost/Aeroasistencia/Administracion/edicionCliente.php">
+             <script>
+                 alert("El cliente NO  fue eliminado EXITOSAMENTE");
+             </script>';
+ 
+         }else{
+ 
+             echo        
+             '<META HTTP-EQUIV="Refresh" CONTENT="0; URL=http://localhost/Aeroasistencia/Administracion/edicionCliente.php">
+             <script>
+                  alert("El cliente fue eliminada EXITOSAMENTE");
+             </script>';
+ 
+         }
+
         header("location: ../Admision/MenuAdmision.php");
     break;
 
@@ -152,89 +181,90 @@ $listadoPaciente=$sentencia->fetchAll(PDO::FETCH_ASSOC);
     <div class="container text-center my-1 py-1">
 
 
-<form action="" method="post">
+<form action="" method="post" name=form1>
 
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">PACIENTE</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <div class="form-row">
-                <div class="form-group col-md-12">
-                <label for="">DNI:</label>
-                <input type="text" class="form-control" name="txtdni" required value="<?php echo $txthc;?>" placeholder="" id="txtdni" requiere="">
-                <br>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">PACIENTE</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <div class="form-row">
+                        <div class="form-group col-md-12">
+                        <label for="">DNI:</label>
+                        <input type="text" class="form-control" name="txtdni" required value="<?php echo $txthc;?>" placeholder="" id="txtdni" requiere="">
+                        <br>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                        <label for="">Nombres:</label>
+                        <input type="text" class="form-control" name="txtnombre" required value="<?php echo $txtnom;?>" placeholder="" id="txtnombre" requiere="">
+                        <br>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                        <label for="">Apellidos:</label>
+                        <input type="text" class="form-control" name="txtapellidos" required value="<?php echo $txtape;?>" placeholder="" id="txtapellidos" requiere="">
+                        <br>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                        <label for="">Email:</label>
+                        <input type="email" class="form-control" name="txtmail" required value="<?php echo $txtmail;?>" placeholder="" id="txtmail" requiere="">
+                        <br>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                        <label for="">Direccion:</label>
+                        <input type="text" class="form-control" name="txtdireccion" required value="<?php echo $txtdir;?>" placeholder="" id="txtdireccion" requiere="">
+                        <br>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="">Telefono Fijo:</label>
+                            <input type="text" class="form-control" name="txttelefono" required value="<?php echo $txttel;?>" placeholder="" id="txttelefono" requiere="">
+                            <br>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="">Celular:</label>
+                            <input type="text" class="form-control" name="txtcelular" required value="<?php echo $txtcel;?>" placeholder="" id="txtcelular" requiere="">
+                            <br>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Sexo:</label>
+                            <input type="text" class="form-control" name="txtsexo" required value="<?php echo $txtsex;?>" placeholder="" id="txtsexo" requiere="">
+                            <br>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="">Fecha Nacimiento:</label>
+                            <input type="textfn" class="form-control" name="textfn" required value="<?php echo $txtfn;?>" placeholder="" id="textfn" requiere="">
+                            <br>
+                        </div>
+
                 </div>
+            </div>
+            <div class="modal-footer">
 
-                <div class="form-group col-md-12">
-                <label for="">Nombres:</label>
-                <input type="text" class="form-control" name="txtnombre" required value="<?php echo $txtnom;?>" placeholder="" id="txtnombre" requiere="">
-                <br>
-                </div>
-
-                <div class="form-group col-md-12">
-                <label for="">Apellidos:</label>
-                <input type="text" class="form-control" name="txtapellidos" required value="<?php echo $txtape;?>" placeholder="" id="txtapellidos" requiere="">
-                <br>
-                </div>
-
-                <div class="form-group col-md-12">
-                <label for="">Email:</label>
-                <input type="email" class="form-control" name="txtmail" required value="<?php echo $txtmail;?>" placeholder="" id="txtmail" requiere="">
-                <br>
-                </div>
-
-                <div class="form-group col-md-12">
-                <label for="">Direccion:</label>
-                <input type="text" class="form-control" name="txtdireccion" required value="<?php echo $txtdir;?>" placeholder="" id="txtdireccion" requiere="">
-                <br>
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="">Telefono Fijo:</label>
-                    <input type="text" class="form-control" name="txttelefono" required value="<?php echo $txttel;?>" placeholder="" id="txttelefono" requiere="">
-                    <br>
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="">Celular:</label>
-                    <input type="text" class="form-control" name="txtcelular" required value="<?php echo $txtcel;?>" placeholder="" id="txtcelular" requiere="">
-                    <br>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="">Sexo:</label>
-                    <input type="text" class="form-control" name="txtsexo" required value="<?php echo $txtsex;?>" placeholder="" id="txtsexo" requiere="">
-                    <br>
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="">Fecha Nacimiento:</label>
-                    <input type="textfn" class="form-control" name="textfn" required value="<?php echo $txtfn;?>" placeholder="" id="textfn" requiere="">
-                    <br>
-                </div>
-
+                        <button value="btnAgregar" <?php echo $accionAgregar; ?> class="btn btn-success" type="submit" name="accion" >Agregar</button>
+                        <button value="btnCancelar" <?php echo $accionCancelar; ?> class="btn btn-primary" type="submit" name="accion">Cancelar</button>
+                    
+            </div>
+            </div>
         </div>
-      </div>
-      <div class="modal-footer">
+        </div>
 
-                <button value="btnAgregar" <?php echo $accionAgregar; ?> class="btn btn-success" type="submit" name="accion" >Agregar</button>
-                <button value="btnCancelar" <?php echo $accionCancelar; ?> class="btn btn-primary" type="submit" name="accion">Cancelar</button>
-            
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  AGREGAR PACIENTE +
-</button>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        AGREGAR PACIENTE +
+        </button>
 
-            </form>         
+</form>         
 
         </div>
 
@@ -243,17 +273,13 @@ $listadoPaciente=$sentencia->fetchAll(PDO::FETCH_ASSOC);
 
 
     <div class="row">
-       <table class="table">
-        <thead>
+       <table class="table table-striped" style="white-space: nowrap; overflow-x: auto;">
+        <thead class="table-success table-striped">
             <tr>
                 <th>DNI</th>
                 <th>Nombres</th>
                 <th>Apellidos</th>
-                <th>Email</th>
                 <th>Direccion</th>
-                <th>Telefono</th>
-                <th>Celular</th>
-                <th>Sexo</th>
                 <th>Fecha Nacimiento</th>
                 <th>Estado</th>
                 <th>Accion</th>
@@ -264,11 +290,9 @@ $listadoPaciente=$sentencia->fetchAll(PDO::FETCH_ASSOC);
                 <td><?php echo $paciente['hc_paciente']; ?></td>
                 <td><?php echo $paciente['nom_paciente']; ?></td>
                 <td><?php echo $paciente['ape_personal']; ?></td>
-                <td><?php echo $paciente['mail_paciente']; ?></td>
+
                 <td><?php echo $paciente['dir_paciente']; ?></td>
-                <td><?php echo $paciente['tel_paciente']; ?></td>
-                <td><?php echo $paciente['cel_paciente']; ?></td>
-                <td><?php echo $paciente['sex_paciente']; ?></td>
+
                 <td><?php echo $paciente['fn_paciente']; ?></td>
                 <td><?php
                 $var=$paciente['est_paciente'];
@@ -278,14 +302,95 @@ $listadoPaciente=$sentencia->fetchAll(PDO::FETCH_ASSOC);
                     echo "INACTIVO";
                 } ?></td>
                 <td>
-                    <form action="" method="post">   
+                    <form action="" method="post" name=form2>   
                         <input type="hidden" name="txtdni" value="<?php echo $paciente['hc_paciente']; ?>">
                         <input type="hidden" name="txtnombre" value="<?php echo $paciente['nom_paciente']; ?>">
                         <input type="hidden" name="txtapellidos" value="<?php echo $paciente['ape_personal'];?>">
+                        <input type="hidden" name="txtmail" value="<?php echo $paciente['mail_paciente']; ?>">
                         <input type="hidden" name="txtdireccion" value="<?php echo $paciente['dir_paciente']; ?>">
+                        <input type="hidden" name="txttelefono" value="<?php echo $paciente['tel_paciente']; ?>">
                         <input type="hidden" name="txtcelular" value="<?php echo $paciente['cel_paciente']; ?>">
+                        <input type="hidden" name="txtsexo" value="<?php echo $paciente['sex_paciente']; ?>">
                         <input type="hidden" name="textfn" value="<?php echo $paciente['fn_paciente']; ?>">
-                        <input type="submit" value="Seleccionar" name="accion">
+
+                                                    <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">PACIENTE</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                            <label for="">DNI:</label>
+                                            <input type="text" class="form-control" name="txtdni" required value="<?php echo $txthc;?>" placeholder="" id="txtdni" requiere="">
+                                            <br>
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                            <label for="">Nombres:</label>
+                                            <input type="text" class="form-control" name="txtnombre" required value="<?php echo $txtnom;?>" placeholder="" id="txtnombre" requiere="">
+                                            <br>
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                            <label for="">Apellidos:</label>
+                                            <input type="text" class="form-control" name="txtapellidos" required value="<?php echo $txtape;?>" placeholder="" id="txtapellidos" requiere="">
+                                            <br>
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                            <label for="">Email:</label>
+                                            <input type="email" class="form-control" name="txtmail" required value="<?php echo $txtmail;?>" placeholder="" id="txtmail" requiere="">
+                                            <br>
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                            <label for="">Direccion:</label>
+                                            <input type="text" class="form-control" name="txtdireccion" required value="<?php echo $txtdir;?>" placeholder="" id="txtdireccion" requiere="">
+                                            <br>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label for="">Telefono Fijo:</label>
+                                                <input type="text" class="form-control" name="txttelefono" required value="<?php echo $txttel;?>" placeholder="" id="txttelefono" requiere="">
+                                                <br>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label for="">Celular:</label>
+                                                <input type="text" class="form-control" name="txtcelular" required value="<?php echo $txtcel;?>" placeholder="" id="txtcelular" requiere="">
+                                                <br>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="">Sexo:</label>
+                                                <input type="text" class="form-control" name="txtsexo" required value="<?php echo $txtsex;?>" placeholder="" id="txtsexo" requiere="">
+                                                <br>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label for="">Fecha Nacimiento:</label>
+                                                <input type="textfn" class="form-control" name="textfn" required value="<?php echo $txtfn;?>" placeholder="" id="textfn" requiere="">
+                                                <br>
+                                            </div>
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+
+                        <button value="btnModificar" <?php echo $accionModificar; ?> class="btn btn-warning" type="submit" name="accion" >Modificar</button>
+                        <button value="btnCancelar" <?php echo $accionCancelar; ?> class="btn btn-primary" type="submit" name="accion">Cancelar</button>
+                    
+            </div>
+            </div>
+        </div>
+        </div>
+
+
+
+                        <button type="submit"  type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" >Modificar</button>
                         <button value="btnEliminar" class="btn btn-danger" type="submit" name="accion">Eliminar</button></td>
 
                     </form> 

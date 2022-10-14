@@ -10,6 +10,8 @@ $senten = "SELECT * FROM usuario WHERE mail_usuario = '".$usuario."'";
   $result = mysqli_query($conexion, $senten);
   if ($data = mysqli_fetch_array($result))
   {
+
+    
     session_start();
     $correo = $data['mail_usuario'];
     $rol = $data['id_rol'];
@@ -17,8 +19,6 @@ $senten = "SELECT * FROM usuario WHERE mail_usuario = '".$usuario."'";
     $_SESSION["usuario"] =$correo;
     $_SESSION["rol"] =$rol;
     switch ($rol) {
-
-        
         case 0:
             header("Location: \cscomas\Administracion\MenuAdmin.php");
             break;
