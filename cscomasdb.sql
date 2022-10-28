@@ -2,10 +2,17 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
+<<<<<<< HEAD
 -- Host: 127.0.0.1
 -- Generation Time: Oct 28, 2022 at 04:03 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
+=======
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 06-10-2022 a las 00:35:04
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
+>>>>>>> master
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,15 +25,24 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
+<<<<<<< HEAD
 -- Database: `cscomasdb`
 --
 CREATE DATABASE IF NOT EXISTS `cscomasdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `cscomasdb`;
+=======
+-- Base de datos: `cscomasdb`
+--
+>>>>>>> master
 
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `citas`
+=======
+-- Estructura de tabla para la tabla `citas`
+>>>>>>> master
 --
 
 CREATE TABLE `citas` (
@@ -40,6 +56,7 @@ CREATE TABLE `citas` (
   `obs_control` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
+<<<<<<< HEAD
 --
 -- Dumping data for table `citas`
 --
@@ -52,6 +69,12 @@ INSERT INTO `citas` (`id_cita`, `id_horario`, `id_personal`, `hc_paciente`, `con
 
 --
 -- Table structure for table `det_especialidad`
+=======
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `det_especialidad`
+>>>>>>> master
 --
 
 CREATE TABLE `det_especialidad` (
@@ -62,7 +85,11 @@ CREATE TABLE `det_especialidad` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
+<<<<<<< HEAD
 -- Dumping data for table `det_especialidad`
+=======
+-- Volcado de datos para la tabla `det_especialidad`
+>>>>>>> master
 --
 
 INSERT INTO `det_especialidad` (`id_especialidad`, `id_doctor`, `obs`, `est_det_doctor`) VALUES
@@ -71,7 +98,11 @@ INSERT INTO `det_especialidad` (`id_especialidad`, `id_doctor`, `obs`, `est_det_
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `doctor`
+=======
+-- Estructura de tabla para la tabla `doctor`
+>>>>>>> master
 --
 
 CREATE TABLE `doctor` (
@@ -82,7 +113,11 @@ CREATE TABLE `doctor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
+<<<<<<< HEAD
 -- Dumping data for table `doctor`
+=======
+-- Volcado de datos para la tabla `doctor`
+>>>>>>> master
 --
 
 INSERT INTO `doctor` (`id_doctor`, `id_personal`, `nro_colegio`, `est_personal`) VALUES
@@ -91,7 +126,11 @@ INSERT INTO `doctor` (`id_doctor`, `id_personal`, `nro_colegio`, `est_personal`)
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `especialidad`
+=======
+-- Estructura de tabla para la tabla `especialidad`
+>>>>>>> master
 --
 
 CREATE TABLE `especialidad` (
@@ -101,7 +140,11 @@ CREATE TABLE `especialidad` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
+<<<<<<< HEAD
 -- Dumping data for table `especialidad`
+=======
+-- Volcado de datos para la tabla `especialidad`
+>>>>>>> master
 --
 
 INSERT INTO `especialidad` (`id_especialidad`, `des_especialidad`, `est_especialidad`) VALUES
@@ -132,7 +175,11 @@ INSERT INTO `especialidad` (`id_especialidad`, `des_especialidad`, `est_especial
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `horario`
+=======
+-- Estructura de tabla para la tabla `horario`
+>>>>>>> master
 --
 
 CREATE TABLE `horario` (
@@ -146,7 +193,11 @@ CREATE TABLE `horario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
+<<<<<<< HEAD
 -- Dumping data for table `horario`
+=======
+-- Volcado de datos para la tabla `horario`
+>>>>>>> master
 --
 
 INSERT INTO `horario` (`id_horario`, `id_doctor`, `id_especialidad`, `fec_horario`, `hor_horario`, `est_atencion`, `obs_control`) VALUES
@@ -166,13 +217,23 @@ INSERT INTO `horario` (`id_horario`, `id_doctor`, `id_especialidad`, `fec_horari
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `paciente`
+=======
+-- Estructura de tabla para la tabla `paciente`
+>>>>>>> master
 --
 
 CREATE TABLE `paciente` (
   `hc_paciente` varchar(20) NOT NULL,
+<<<<<<< HEAD
   `nom_paciente` varchar(75) NOT NULL,
   `ape_personal` varchar(50) NOT NULL,
+=======
+  `dni_paciente` varchar(50) NOT NULL,
+  `nom_paciente` varchar(75) NOT NULL,
+  `pas_personal` varchar(50) NOT NULL,
+>>>>>>> master
   `mail_paciente` varchar(75) NOT NULL,
   `est_paciente` tinyint(1) NOT NULL,
   `dir_paciente` varchar(100) DEFAULT NULL,
@@ -183,6 +244,7 @@ CREATE TABLE `paciente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
+<<<<<<< HEAD
 -- Dumping data for table `paciente`
 --
 
@@ -197,11 +259,25 @@ INSERT INTO `paciente` (`hc_paciente`, `nom_paciente`, `ape_personal`, `mail_pac
 ('40414248', 'JEAN PIER', 'GALLOSO PERES', 'JGALLOSOPERES@HOTMAIL.COM', 1, 'JR. LOS SAUCES MZ D LT 18 - COMAS', '0146585792', '995558484', 'MASCULINO', '24/12/1984'),
 ('40414249', 'JEAN PIER', 'GALLOSO PERES', 'JGALLOSOPERES@HOTMAIL.COM', 1, 'JR. LOS SAUCES MZ D LT 18 - COMAS', '0146585792', '995558484', 'MASCULINO', '24/12/1984'),
 ('42667250', 'jose', 'de los santos paredes', 'j.santosparedes@gmail.com', 1, 'Mz g lt 33 Coop viña San Francisco', '+51995553932', '995555857', 'MASCULINO', '24/10/1984');
+=======
+-- Volcado de datos para la tabla `paciente`
+--
+
+INSERT INTO `paciente` (`hc_paciente`, `dni_paciente`, `nom_paciente`, `pas_personal`, `mail_paciente`, `est_paciente`, `dir_paciente`, `tel_paciente`, `cel_paciente`, `sex_paciente`, `fn_paciente`) VALUES
+('10101012', '10101012', 'CELINA MUÑOZ OLAYA', '', 'CELINA@HOTMAIL.COM', 1, 'COMAS', '017854856', '954613254', 'FEMENINO', '11/10/1961'),
+('10101013', '10101012', 'JUAN ESPIRITU TORRES', '', 'JESPIRITU@HOTMAIL.COM', 1, 'SANTA LUZMILA', '014625625', '991991991', 'MASCULINO', '24/12/1975'),
+('10101014', '10101014', 'MERCEDES ACOSTA PEÑA', '', 'MACOSTA@HOTMAIL.COM', 1, 'RETABLO', '015623894', '991990992', 'FEMENINO', '05/08/1970'),
+('10101015', '10101015', 'PEDRO PEÑA PEÑA', '', 'PPEÑA@HOTMAIL.COM', 1, 'COMAS', '014258795', '997998995', 'MASCULINO', '22/04/1970');
+>>>>>>> master
 
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `personal`
+=======
+-- Estructura de tabla para la tabla `personal`
+>>>>>>> master
 --
 
 CREATE TABLE `personal` (
@@ -220,6 +296,7 @@ CREATE TABLE `personal` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
+<<<<<<< HEAD
 -- Dumping data for table `personal`
 --
 
@@ -231,11 +308,25 @@ INSERT INTO `personal` (`id_personal`, `dni_personal`, `nom_personal`, `mail_per
 (4, '10101010', 'FRANCISCO CORRALES INFANTA', 'FCORRALES@CSCOMAS.GOB.PE', 'PRINCIPAL', 1, 'COMAS', '017845871', '993993993', 'MASCULINO', '04/10/1948', '01/08/2020'),
 (5, '10112025', 'JOSE PRESENTACION MEJIA', 'JOSEPRE@HOTMAIL.COM', 'PRINCIPAL', 1, 'Mz g lt 33 Coop viña San Francisco', '+51995553932', '995555857', 'MASCULINO', '05/08/1971', '20-07-2022'),
 (6, '10112026', 'JOSE PRESENTACION MEJIA', 'JOSEPRE@HOTMAIL.COM', 'PRINCIPAL', 1, 'Mz g lt 33 Coop viña San Francisco', '+51995553932', '995555857', 'MASCULINO', '05/08/1971', '20-07-2022');
+=======
+-- Volcado de datos para la tabla `personal`
+--
+
+INSERT INTO `personal` (`id_personal`, `dni_personal`, `nom_personal`, `mail_personal`, `loc_personal`, `est_personal`, `dir_personal`, `tel_casa`, `cel_personal`, `sex_personal`, `fn_personal`, `fi_personal`) VALUES
+(0, '10000000', 'ADMINISTRADOR_TIC', 'ADMIN@CSCOMAS.GOB.PE', 'PRINCIPAL', 1, 'COMAS', '01-2356891', '998998998', 'MASCULINO', '01-05-1990', '01-05-1990'),
+(1, '40404040', 'JOSE DE LOS SANTOS PAREDES', 'JSANTOS@CSCOMAS.GOB.PE', 'PRINCIPAL', 1, 'COMAS', '014585452', '997997997', 'MASCULINO', '24/08/1974', '01/08/2020'),
+(2, '45454545', 'ZORAIDA OYARCE', 'ZOYARCE@CSCOMAS.GOB.PE', 'PRINCIPAL', 1, 'COMAS', '01824976', '994994994', 'FEMENINO', '04/05/1991', '12/02/2020'),
+(4, '10101010', 'FRANCISCO CORRALES INFANTA', 'FCORRALES@CSCOMAS.GOB.PE', 'PRINCIPAL', 1, 'COMAS', '017845871', '993993993', 'MASCULINO', '04/10/1948', '01/08/2020');
+>>>>>>> master
 
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `rol`
+=======
+-- Estructura de tabla para la tabla `rol`
+>>>>>>> master
 --
 
 CREATE TABLE `rol` (
@@ -245,7 +336,11 @@ CREATE TABLE `rol` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
+<<<<<<< HEAD
 -- Dumping data for table `rol`
+=======
+-- Volcado de datos para la tabla `rol`
+>>>>>>> master
 --
 
 INSERT INTO `rol` (`id_rol`, `des_rol`, `est_rol`) VALUES
@@ -258,7 +353,11 @@ INSERT INTO `rol` (`id_rol`, `des_rol`, `est_rol`) VALUES
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `triaje`
+=======
+-- Estructura de tabla para la tabla `triaje`
+>>>>>>> master
 --
 
 CREATE TABLE `triaje` (
@@ -271,6 +370,7 @@ CREATE TABLE `triaje` (
   `estado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
+<<<<<<< HEAD
 --
 -- Dumping data for table `triaje`
 --
@@ -283,6 +383,12 @@ INSERT INTO `triaje` (`id_cita`, `peso`, `talla`, `temperatura`, `presion`, `obs
 
 --
 -- Table structure for table `usuario`
+=======
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+>>>>>>> master
 --
 
 CREATE TABLE `usuario` (
@@ -296,6 +402,7 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
+<<<<<<< HEAD
 -- Dumping data for table `usuario`
 --
 
@@ -309,6 +416,20 @@ INSERT INTO `usuario` (`id_usuario`, `id_personal`, `id_rol`, `mail_usuario`, `p
 
 --
 -- Indexes for table `citas`
+=======
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `id_personal`, `id_rol`, `mail_usuario`, `pas_personal`, `des_usuario`, `est_usuario`) VALUES
+(0, 0, 0, 'admin@cscomas.gob.pe', '$2a$12$mTlmNeCMD.EKQ5KuAy8Mq.6QS/LM8zjpynDHpRhY/XtdpzK39izhm', 'Administrador', 1);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `citas`
+>>>>>>> master
 --
 ALTER TABLE `citas`
   ADD PRIMARY KEY (`id_cita`) USING BTREE,
@@ -317,27 +438,43 @@ ALTER TABLE `citas`
   ADD KEY `hc_paciente` (`hc_paciente`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `det_especialidad`
+=======
+-- Indices de la tabla `det_especialidad`
+>>>>>>> master
 --
 ALTER TABLE `det_especialidad`
   ADD KEY `id_doctor` (`id_doctor`),
   ADD KEY `id_especialidad` (`id_especialidad`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `doctor`
+=======
+-- Indices de la tabla `doctor`
+>>>>>>> master
 --
 ALTER TABLE `doctor`
   ADD PRIMARY KEY (`id_doctor`) USING BTREE,
   ADD KEY `id_personal` (`id_personal`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `especialidad`
+=======
+-- Indices de la tabla `especialidad`
+>>>>>>> master
 --
 ALTER TABLE `especialidad`
   ADD PRIMARY KEY (`id_especialidad`) USING BTREE;
 
 --
+<<<<<<< HEAD
 -- Indexes for table `horario`
+=======
+-- Indices de la tabla `horario`
+>>>>>>> master
 --
 ALTER TABLE `horario`
   ADD PRIMARY KEY (`id_horario`) USING BTREE,
@@ -345,31 +482,51 @@ ALTER TABLE `horario`
   ADD KEY `id_especialidad` (`id_especialidad`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `paciente`
+=======
+-- Indices de la tabla `paciente`
+>>>>>>> master
 --
 ALTER TABLE `paciente`
   ADD PRIMARY KEY (`hc_paciente`) USING BTREE;
 
 --
+<<<<<<< HEAD
 -- Indexes for table `personal`
+=======
+-- Indices de la tabla `personal`
+>>>>>>> master
 --
 ALTER TABLE `personal`
   ADD PRIMARY KEY (`id_personal`) USING BTREE;
 
 --
+<<<<<<< HEAD
 -- Indexes for table `rol`
+=======
+-- Indices de la tabla `rol`
+>>>>>>> master
 --
 ALTER TABLE `rol`
   ADD PRIMARY KEY (`id_rol`) USING BTREE;
 
 --
+<<<<<<< HEAD
 -- Indexes for table `triaje`
+=======
+-- Indices de la tabla `triaje`
+>>>>>>> master
 --
 ALTER TABLE `triaje`
   ADD KEY `id_cita` (`id_cita`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `usuario`
+=======
+-- Indices de la tabla `usuario`
+>>>>>>> master
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id_usuario`) USING BTREE,
@@ -377,11 +534,19 @@ ALTER TABLE `usuario`
   ADD KEY `id_rol` (`id_rol`);
 
 --
+<<<<<<< HEAD
 -- Constraints for dumped tables
 --
 
 --
 -- Constraints for table `citas`
+=======
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `citas`
+>>>>>>> master
 --
 ALTER TABLE `citas`
   ADD CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`id_horario`) REFERENCES `horario` (`id_horario`),
@@ -389,31 +554,48 @@ ALTER TABLE `citas`
   ADD CONSTRAINT `citas_ibfk_3` FOREIGN KEY (`hc_paciente`) REFERENCES `paciente` (`hc_paciente`);
 
 --
+<<<<<<< HEAD
 -- Constraints for table `det_especialidad`
+=======
+-- Filtros para la tabla `det_especialidad`
+>>>>>>> master
 --
 ALTER TABLE `det_especialidad`
   ADD CONSTRAINT `det_doctor_ibfk_1` FOREIGN KEY (`id_doctor`) REFERENCES `doctor` (`id_doctor`),
   ADD CONSTRAINT `det_doctor_ibfk_2` FOREIGN KEY (`id_especialidad`) REFERENCES `especialidad` (`id_especialidad`);
 
 --
+<<<<<<< HEAD
 -- Constraints for table `horario`
+=======
+-- Filtros para la tabla `horario`
+>>>>>>> master
 --
 ALTER TABLE `horario`
   ADD CONSTRAINT `horario_ibfk_1` FOREIGN KEY (`id_doctor`) REFERENCES `doctor` (`id_doctor`),
   ADD CONSTRAINT `horario_ibfk_2` FOREIGN KEY (`id_especialidad`) REFERENCES `especialidad` (`id_especialidad`);
 
 --
+<<<<<<< HEAD
 -- Constraints for table `triaje`
+=======
+-- Filtros para la tabla `triaje`
+>>>>>>> master
 --
 ALTER TABLE `triaje`
   ADD CONSTRAINT `triaje_ibfk_1` FOREIGN KEY (`id_cita`) REFERENCES `citas` (`id_cita`);
 
 --
+<<<<<<< HEAD
 -- Constraints for table `usuario`
+=======
+-- Filtros para la tabla `usuario`
+>>>>>>> master
 --
 ALTER TABLE `usuario`
   ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_personal`) REFERENCES `personal` (`id_personal`),
   ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`);
+<<<<<<< HEAD
 --
 -- Database: `grupo4`
 --
@@ -666,6 +848,8 @@ USE `texasdb`;
 --
 -- Error reading structure for table texasdb.usuario: #1932 - Table &#039;texasdb.usuario&#039; doesn&#039;t exist in engine
 -- Error reading data for table texasdb.usuario: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near &#039;FROM `texasdb`.`usuario`&#039; at line 1
+=======
+>>>>>>> master
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

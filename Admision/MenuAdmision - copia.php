@@ -1,6 +1,9 @@
 <?php
 include("../Logica/action_page.php");
+<<<<<<< HEAD
 include("../Logica/conexion.php");
+=======
+>>>>>>> master
 
 session_start();
 $usuario= $_SESSION['usuario'];
@@ -29,7 +32,10 @@ $mostrarModal=false;
 switch($accion){
     case "btnAgregar":
         $est=(int)"1";
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
         $sentencia=$pdo->prepare("INSERT INTO paciente(hc_paciente, nom_paciente, ape_personal, mail_paciente, est_paciente, dir_paciente, tel_paciente, cel_paciente, sex_paciente, fn_paciente) 
         VALUES (:hc_paciente, :nom_paciente, :ape_personal, :mail_paciente, :est_paciente, :dir_paciente, :tel_paciente, :cel_paciente, :sex_paciente, :fn_paciente)");
         $sentencia->bindParam(':hc_paciente',$txthc);
@@ -309,8 +315,14 @@ $listadoPaciente=$sentencia->fetchAll(PDO::FETCH_ASSOC);
                         <input type="hidden" name="textfn" value="<?php echo $paciente['fn_paciente']; ?>">
 
                         <input type="submit" value="Seleccionar" name="accion">
+<<<<<<< HEAD
                     </form> 
                     <button value="btnEliminar" <?php echo $accionEliminar; ?> class="btn btn-danger" type="submit" name="accion">Eliminar</button></td>
+=======
+                        <button value="btnEliminar" <?php echo $accionEliminar; ?> class="btn btn-danger" type="submit" name="accion">Eliminar</button></td>
+
+                    </form> 
+>>>>>>> master
             </tr>
         <?php } ?>    
        </table>

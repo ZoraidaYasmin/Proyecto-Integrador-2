@@ -1,0 +1,151 @@
+CREATE TABLE `rol` (
+  `id_rol` int(11) NOT NULL,
+  `des_rol` varchar(50) NOT NULL,
+  `est_rol` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+ALTER TABLE `rol`
+  ADD PRIMARY KEY (`id_rol`) USING BTREE;
+
+CREATE TABLE `personal` (
+  `id_personal` int(11) NOT NULL,
+  `dni_personal` varchar(50) NOT NULL,
+  `nom_personal` varchar(75) NOT NULL,
+  `mail_personal` varchar(75) NOT NULL,
+  `loc_personal` varchar(100) NOT NULL,
+  `est_personal` tinyint(1) NOT NULL,
+  `dir_personal` varchar(100) DEFAULT NULL,
+  `tel_casa` varchar(100) DEFAULT NULL,
+  `cel_personal` varchar(100) DEFAULT NULL,
+  `sex_personal` varchar(100) DEFAULT NULL,
+  `fn_personal` varchar(100) DEFAULT NULL,
+  `fi_personal` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+ALTER TABLE `personal`
+  ADD PRIMARY KEY (`id_personal`) USING BTREE;
+
+CREATE TABLE `usuario` (
+  `id_usuario` int(11) NOT NULL,
+  `id_personal` int(11) NOT NULL,
+  `id_rol` int(11) NOT NULL,
+  `mail_usuario` varchar(75) NOT NULL,
+  `pas_personal` varchar(50) NOT NULL,
+  `des_usuario` varchar(50) NOT NULL,
+  `est_usuario` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_usuario`) USING BTREE,
+  ADD KEY `id_personal` (`id_personal`),
+  ADD KEY `id_rol` (`id_rol`);
+
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_personal`) REFERENCES `personal` (`id_personal`),
+  ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`id_rol`) REFERENCES `rol` (`id_rol`);
+
+
+CREATE TABLE `especialidad` (
+  `id_especialidad` int(11) NOT NULL,
+  `des_especialidad` varchar(50) NOT NULL,
+  `est_especialidad` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+ALTER TABLE `especialidad`
+  ADD PRIMARY KEY (`id_especialidad`) USING BTREE;
+
+
+CREATE TABLE `doctor` (
+  `id_doctor` int(11) NOT NULL,
+  `id_personal` int(11) NOT NULL,
+  `nro_colegio` int(11) NOT NULL,
+  `est_personal` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+ALTER TABLE `doctor`
+  ADD PRIMARY KEY (`id_doctor`) USING BTREE,
+  ADD KEY `id_personal` (`id_personal`);
+
+CREATE TABLE `det_especialidad` (
+  `id_especialidad` int(11) NOT NULL,
+  `id_doctor` int(11) NOT NULL,
+  `obs` varchar(50) NOT NULL,
+  `est_det_doctor` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+ALTER TABLE `det_especialidad`
+  ADD KEY `id_doctor` (`id_doctor`),
+  ADD KEY `id_especialidad` (`id_especialidad`),
+  ADD CONSTRAINT `det_doctor_ibfk_1` FOREIGN KEY (`id_doctor`) REFERENCES `doctor` (`id_doctor`),
+  ADD CONSTRAINT `det_doctor_ibfk_2` FOREIGN KEY (`id_especialidad`) REFERENCES `especialidad` (`id_especialidad`);
+
+
+CREATE TABLE `horario` (
+  `id_horario` int(11) NOT NULL,
+  `id_doctor` int(11) NOT NULL,
+  `id_especialidad` int(11) NOT NULL,
+  `fec_horario` varchar(20) NOT NULL,
+  `hor_horario` varchar(20) NOT NULL,
+  `est_atencion` int(11) NOT NULL,
+  `obs_control` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+ALTER TABLE `horario`
+  ADD PRIMARY KEY (`id_horario`) USING BTREE,
+  ADD KEY `id_doctor` (`id_doctor`),
+  ADD KEY `id_especialidad` (`id_especialidad`),
+  ADD CONSTRAINT `horario_ibfk_1` FOREIGN KEY (`id_doctor`) REFERENCES `doctor` (`id_doctor`),
+  ADD CONSTRAINT `horario_ibfk_2` FOREIGN KEY (`id_especialidad`) REFERENCES `especialidad` (`id_especialidad`);
+
+
+CREATE TABLE `paciente` (
+  `hc_paciente` varchar(20) NOT NULL,
+  `dni_paciente` varchar(50) NOT NULL,
+  `nom_paciente` varchar(75) NOT NULL,
+  `pas_personal` varchar(50) NOT NULL,
+  `mail_paciente` varchar(75) NOT NULL,
+  `est_paciente` tinyint(1) NOT NULL,
+  `dir_paciente` varchar(100) DEFAULT NULL,
+  `tel_paciente` varchar(100) DEFAULT NULL,
+  `cel_paciente` varchar(100) DEFAULT NULL,
+  `sex_paciente` varchar(100) DEFAULT NULL,
+  `fn_paciente` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+ALTER TABLE `paciente`
+  ADD PRIMARY KEY (`hc_paciente`) USING BTREE;
+
+CREATE TABLE `citas` (
+  `id_cita` int(11) NOT NULL,
+  `id_horario` int(11) NOT NULL,
+  `id_personal` int(11) NOT NULL,
+  `hc_paciente` varchar(20) NOT NULL,
+  `consultorio` varchar(10) DEFAULT NULL,
+  `diagnostico` varchar(1) DEFAULT NULL,
+  `est_atencion` int(11) NOT NULL,
+  `obs_control` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+ALTER TABLE `citas`
+  ADD PRIMARY KEY (`id_cita`) USING BTREE,
+  ADD KEY `id_horario` (`id_horario`),
+  ADD KEY `id_personal` (`id_personal`),
+  ADD KEY `hc_paciente` (`hc_paciente`),
+  ADD CONSTRAINT `citas_ibfk_1` FOREIGN KEY (`id_horario`) REFERENCES `horario` (`id_horario`),
+  ADD CONSTRAINT `citas_ibfk_2` FOREIGN KEY (`id_personal`) REFERENCES `personal` (`id_personal`),
+  ADD CONSTRAINT `citas_ibfk_3` FOREIGN KEY (`hc_paciente`) REFERENCES `paciente` (`hc_paciente`);
+
+
+CREATE TABLE `triaje` (
+  `id_cita` int(11) NOT NULL,
+  `peso` double DEFAULT NULL,
+  `talla` double DEFAULT NULL,
+  `temperatura` double DEFAULT NULL,
+  `presion` double DEFAULT NULL,
+  `obs_atencion` varchar(100) DEFAULT NULL,
+  `estado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+
+ALTER TABLE `triaje`
+  ADD KEY `id_cita` (`id_cita`),
+  ADD CONSTRAINT `triaje_ibfk_1` FOREIGN KEY (`id_cita`) REFERENCES `citas` (`id_cita`);
