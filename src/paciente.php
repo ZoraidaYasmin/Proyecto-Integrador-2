@@ -1,12 +1,14 @@
 <?php
-class Modelo{
+
+class Paciente{
+
     private $Modelo;
     private $db;
     private $listado;
-
+    private $consulta1 = "select * FROM paciente";
     public function __construct(){
         $this->Modelo=array();
-        $this->db=new PDO('mysql:host=localhost;dbname=cscomasdb',"top_admin","12345678");
+        $this->db=new PDO('mysql:host=localhost;dbname=cscomasdb','top_admin','12345678');
     }
     
 
@@ -19,49 +21,49 @@ class Modelo{
         }else{
             return false;
         }
+        return $tabla;
     }
 
     public function listar($tabla){
 
-        $consulta="SELECT * FROM ".$tabla."limit 50;";
+        $consulta="SELECT * FROM ".$tabla." limit 50;";
         $resu=$this->db->query($consulta);
         while($filas=$resu->FETCHALL(PDO::FETCH_ASSOC)){
-            $this->listado[]=$filas;
+            $listado1[]=$filas;
         }
-        return $this->listado;
-        
+        return $tabla;
     }
 
     public function buscar($tabla,$condicion){
 
-        $consulta="SELECT * FROM ".$tabla." where ".$condicion.";";
+        $consulta="SELECT * FROM ".$tabla." where hc_paciente='".$condicion."';";
         $resu=$this->db->query($consulta);
         while($filas=$resu->FETCHALL(PDO::FETCH_ASSOC)){
             $this->listado[]=$filas;
         }
-        return $this->listado;
-        
+        return $tabla;
     }
 
     public function actualizar($tabla,$data,$condicion){
-        $consult="UPDATE ".$tabla." set ".$data." where ".$condicion;
+        $consult="UPDATE ".$tabla." set ".$data." where hc_paciente='".$condicion."';";
         $resultad=$this->db->query($consult);
         if($resultad){
             return true;
         }else{
             return false;
         }
+        return $tabla;
     }
 
     public function eliminar($tabla,$condicion){
 
-        $consulta="delete from ".$tabla." WHERE ".$condicion;
+        $consulta="DELETE FROM ".$tabla." WHERE hc_paciente='".$condicion."';";
         $resulta=$this->db->query($consulta);
         if($resulta){
             return true;
         }else{
             return false;
         }
-        
+        return $tabla;
     }
 }
